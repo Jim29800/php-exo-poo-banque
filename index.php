@@ -1,26 +1,25 @@
 <?php
-echo "Exercice POO : Compte (banque)<br>";
-require_once("class/Conseiller.class.php");
-require_once("class/Client.class.php");
-require_once("class/ClientManager.class.php");
 
 
-// $jim = new Personne("bou", "jim");
-// var_dump($jim);
-// $jean = new Personne("tat", "jean");
-// var_dump($jean);
+require_once('class/Personne.php');
+require_once('class/Conseiller.php');
+require_once('class/Client.php');
+require_once('class/PersonneManager.php');
+require_once('class/CompteManager.php');
+require_once('class/Compte.php');
+require_once('class/Operation.php');
 
+$personneManager = PersonneManager::getInstance();
 
-$liste_client = new ClientManager();
-$jim = new Conseiller("bou", "jim");
-$jeanne = new Conseiller("tir", "jeanne");
+$conseiller1 = $personneManager->addConseiller("Monsieur", "le conseiller");
+$client1 = $personneManager->addClient("Christopher", "Fourgeaud", $conseiller1 );
 
-$liste_client->ajout_client("pol", "jean", $jim);
-$liste_client->ajout_client("pierre", "jaques", $jim);
-$liste_client->ajout_client("tata", "toto", $jeanne);
+$compte1 = new Compte(0,$client1,$conseiller1,150);
+$cptmanager = new CompteManager();
+$cptmanager->ouvrirCompteClient($client1,$conseiller1);
+var_dump($cptmanager);
 
+$cptmanager->operation(0,150,"Dépot initial $$");
 
+var_dump($cptmanager);
 
-
-$liste_client->affiche_client($jim);
-echo $jim->get_nb_client();

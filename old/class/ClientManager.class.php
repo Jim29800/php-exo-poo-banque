@@ -3,7 +3,7 @@ class ClientManager {
     private $tableau = [];
 
     public function ajout_client($nom, $prenom, $conseiller){
-        array_push($this->tableau,new client($nom, $prenom, $conseiller));
+        array_push($this->tableau,new Client($nom, $prenom, $conseiller));
         $conseiller->ajout_client();
     }
 
